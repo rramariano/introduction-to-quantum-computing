@@ -1,0 +1,1567 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>8. COARE and ASTI’s Quantum Circuit Simulation Project &#8212; Introduction to Quantum Computing</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'book/chapter_7/chapter_7-nb';</script>
+    <link rel="canonical" href="https://jaaborot.github.io/introduction-to-quantum-computing/book/chapter_7/chapter_7-nb.html" />
+    <link rel="icon" href="../../_static/fav.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="7. Software Programming for Quantum Computation" href="../chapter_6/chapter_6-nb.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/qil-logo.png" class="logo__image only-light" alt="Introduction to Quantum Computing - Home"/>
+    <script>document.write(`<img src="../../_static/qil-logo.png" class="logo__image only-dark" alt="Introduction to Quantum Computing - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Chapters</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../chapter_0/chapter_0-nb.html">1. Quantum Computing: A Fast-Emerging Field and Its Potential Impact</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_1/chapter_1-nb.html">2. Introduction to Classical Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_2/chapter_2-nb.html">3. Mathematical Foundation of Quantum Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_3/chapter_3-nb.html">4. Quantum States for Quantum Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_4/chapter_4-nb.html">5. Introduction to Quantum Computing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_5/chapter_5-nb.html">6. Quantum Algorithms and Their Advantages Over Classical Counterparts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapter_6/chapter_6-nb.html">7. Software Programming for Quantum Computation</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">8. COARE and ASTI’s Quantum Circuit Simulation Project</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://mybinder.org/v2/gh/jaaborot/introduction-to-quantum-computing/master?urlpath=tree/book/chapter_7/chapter_7-nb.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onBinder"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="btn__text-container">Binder</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/jaaborot/introduction-to-quantum-computing/blob/master/book/chapter_7/chapter_7-nb.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/jaaborot/introduction-to-quantum-computing" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/jaaborot/introduction-to-quantum-computing/edit/main/book/chapter_7/chapter_7-nb.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/jaaborot/introduction-to-quantum-computing/issues/new?title=Issue%20on%20page%20%2Fbook/chapter_7/chapter_7-nb.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/book/chapter_7/chapter_7-nb.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>COARE and ASTI’s Quantum Circuit Simulation Project</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">8.1. Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-first-supercomputer">8.2. The First Supercomputer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dost-asti-coare">8.3. DOST-ASTI COARE</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coare-services">8.4. COARE Services:</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#who-can-avail-for-the-services">8.4.1. Who can avail for the services?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hpc-service-and-users">8.4.2. HPC Service and Users</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#real-life-applications">8.4.3. Real Life Applications</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-commands-for-linux">8.5. Basic commands for Linux</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connect-to-a-high-performance-computing-hpc">8.6. Connect to a High-Performance Computing (HPC)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#connect-to-an-hpc-from-windows-10-linux-or-macos-using-terminal-and-other-cli-software">8.6.1. Connect to an HPC from Windows 10, Linux or MacOS using terminal and other CLI software:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#connect-to-an-hpc-from-windows-using-putty">8.6.2. Connect to an HPC from Windows using PuTTY:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-ssh-key-pairs">8.6.3. Generate SSH Key Pairs</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-using-linux-macos-wsl">8.6.3.1. Generate using Linux / MacOS / WSL</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-using-putty-key-generator-windows">8.6.3.2. Generate using PuTTY key Generator (Windows)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accessing-dost-asti-coare-hpc">8.7. Accessing DOST-ASTI COARE HPC</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#logging-in-using-linux-macos-wsl">8.7.1. Logging In using Linux / MacOS / WSL</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#logging-in-using-putty-windows">8.7.2. Logging  In using PuTTY (Windows)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#upload-and-downloading-files">8.8. Upload and Downloading files</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scp-linux-macos-wsl">8.8.1. scp ( Linux / MacOS / WSL)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#winscp-windows">8.8.2. WinSCP ( Windows )</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modules-and-environments">8.9. Modules and Environments</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#module-commands">8.9.1. Module Commands</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anaconda-environment">8.9.2. Anaconda ( Environment )</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#slurm">8.10. SLURM</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#partitions-and-quality-of-service-qos">8.10.1. Partitions and Quality-of-Service (QOS)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#job-parameters">8.10.2. Job Parameters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#job-script">8.10.3. Job Script</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#job-management">8.10.4. Job Management</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">8.11. References</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="coare-and-astis-quantum-circuit-simulation-project">
+<h1><a class="toc-backref" href="#id6" role="doc-backlink"><span class="section-number">8. </span>COARE and ASTI’s Quantum Circuit Simulation Project</a><a class="headerlink" href="#coare-and-astis-quantum-circuit-simulation-project" title="Link to this heading">#</a></h1>
+<p><em>by Cyrel Jon Fontelo</em></p>
+<nav class="contents" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#coare-and-astis-quantum-circuit-simulation-project" id="id6">COARE and ASTI’s Quantum Circuit Simulation Project</a></p>
+<ul>
+<li><p><a class="reference internal" href="#introduction" id="id7">Introduction</a></p></li>
+<li><p><a class="reference internal" href="#the-first-supercomputer" id="id8">The First Supercomputer</a></p></li>
+<li><p><a class="reference internal" href="#dost-asti-coare" id="id9">DOST-ASTI COARE</a></p></li>
+<li><p><a class="reference internal" href="#coare-services" id="id10">COARE Services:</a></p>
+<ul>
+<li><p><a class="reference internal" href="#who-can-avail-for-the-services" id="id11">Who can avail for the services?</a></p></li>
+<li><p><a class="reference internal" href="#hpc-service-and-users" id="id12">HPC Service and Users</a></p></li>
+<li><p><a class="reference internal" href="#real-life-applications" id="id13">Real Life Applications</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#basic-commands-for-linux" id="id14">Basic commands for Linux</a></p></li>
+<li><p><a class="reference internal" href="#connect-to-a-high-performance-computing-hpc" id="id15">Connect to a High-Performance Computing (HPC)</a></p>
+<ul>
+<li><p><a class="reference internal" href="#connect-to-an-hpc-from-windows-10-linux-or-macos-using-terminal-and-other-cli-software" id="id16">Connect to an HPC from Windows 10, Linux or MacOS using terminal and other CLI software:</a></p></li>
+<li><p><a class="reference internal" href="#connect-to-an-hpc-from-windows-using-putty" id="id17">Connect to an HPC from Windows using PuTTY:</a></p></li>
+<li><p><a class="reference internal" href="#generate-ssh-key-pairs" id="id18">Generate SSH Key Pairs</a></p>
+<ul>
+<li><p><a class="reference internal" href="#generate-using-linux-macos-wsl" id="id19">Generate using Linux / MacOS / WSL</a></p></li>
+<li><p><a class="reference internal" href="#generate-using-putty-key-generator-windows" id="id20">Generate using PuTTY key Generator (Windows)</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#accessing-dost-asti-coare-hpc" id="id21">Accessing DOST-ASTI COARE HPC</a></p>
+<ul>
+<li><p><a class="reference internal" href="#logging-in-using-linux-macos-wsl" id="id22">Logging In using Linux / MacOS / WSL</a></p></li>
+<li><p><a class="reference internal" href="#logging-in-using-putty-windows" id="id23">Logging  In using PuTTY (Windows)</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#upload-and-downloading-files" id="id24">Upload and Downloading files</a></p>
+<ul>
+<li><p><a class="reference internal" href="#scp-linux-macos-wsl" id="id25">scp ( Linux / MacOS / WSL)</a></p></li>
+<li><p><a class="reference internal" href="#winscp-windows" id="id26">WinSCP ( Windows )</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#modules-and-environments" id="id27">Modules and Environments</a></p>
+<ul>
+<li><p><a class="reference internal" href="#module-commands" id="id28">Module Commands</a></p></li>
+<li><p><a class="reference internal" href="#anaconda-environment" id="id29">Anaconda ( Environment )</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#slurm" id="id30">SLURM</a></p>
+<ul>
+<li><p><a class="reference internal" href="#partitions-and-quality-of-service-qos" id="id31">Partitions and Quality-of-Service (QOS)</a></p></li>
+<li><p><a class="reference internal" href="#job-parameters" id="id32">Job Parameters</a></p></li>
+<li><p><a class="reference internal" href="#job-script" id="id33">Job Script</a></p></li>
+<li><p><a class="reference internal" href="#job-management" id="id34">Job Management</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#references" id="id35">References</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="introduction">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink"><span class="section-number">8.1. </span>Introduction</a><a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<p>High-Performance Computing (HPC) is a large computer composed of a collection of many smaller, separate servers (computers) known as nodes. These nodes are connected to each other with a fast interconnect to facilitate rapid data transfer. With this infrastructure, HPC is able to solve complex and high-speed computation problems that cannot be performed by an average computer.</p>
+<p>Supercomputer development was originally driven to be used in applications related to national security, including nuclear weapons design and cryptography. Later on, this technology was employed by the aerospace, automotive industries, scientific research, quantum mechanics, weather forecasting, engineering, and more.</p>
+</section>
+<section id="the-first-supercomputer">
+<h2><a class="toc-backref" href="#id8" role="doc-backlink"><span class="section-number">8.2. </span>The First Supercomputer</a><a class="headerlink" href="#the-first-supercomputer" title="Link to this heading">#</a></h2>
+<p><strong>CDC 6600 by <a class="reference external" href="https://en.wikipedia.org/wiki/Seymour_Cray">Seymour Cray</a>, 1964</strong></p>
+<p>In the year 1964, the Control Data Corporation (CDC) 6600 made its first appearance as the world’s fastest computer. It was designed by Seymour Cray, with a peak performance of up to three million floating-point (FLOPS) or 3 Mega-FLOPS (MFLOPS), and the term <em><strong>supercomputer</strong></em> was coined to describe it.</p>
+<figure class="align-default" id="id1">
+<img alt="../../_images/640px-CDC_6600.jc.jpg" src="../../_images/640px-CDC_6600.jc.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 8.1 </span><span class="caption-text">align: center</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+<div class="legend">
+<p><em>Image source: <a class="reference external" href="https://commons.wikimedia.org/wiki/File:CDC_6600.jc.jpg">https://commons.wikimedia.org/wiki/File:CDC_6600.jc.jpg</a></em></p>
+</div>
+</figcaption>
+</figure>
+<p><strong>Cray-1 Seymour Cray, 1976</strong></p>
+<p>Seymour Cray, the architect of the CDC 6600, started his own company, Cray Research Inc., in 1972. The company’s first product, released in 1976, was the <strong>Cray-1</strong>. It was also the first supercomputer to successfully implement the vector processor design, also known as an array processor, which is a central processing unit (CPU) that executes a set of instructions in large one-dimensional arrays. With a peak performance of up to 160 million floating-point (FLOPS) or 160 Mega-FLOPS (MFLOPS).</p>
+<figure class="align-default" id="id2">
+<img alt="../../_images/Cray-1-deutsches-museum.jpg" src="../../_images/Cray-1-deutsches-museum.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 8.2 </span><span class="caption-text">align: center</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
+<div class="legend">
+<p><em>Image source: <a class="reference external" href="https://commons.wikimedia.org/wiki/File:Cray-1-deutsches-museum.jpg">https://commons.wikimedia.org/wiki/File:Cray-1-deutsches-museum.jpg</a></em></p>
+</div>
+</figcaption>
+</figure>
+</section>
+<section id="dost-asti-coare">
+<h2><a class="toc-backref" href="#id9" role="doc-backlink"><span class="section-number">8.3. </span>DOST-ASTI COARE</a><a class="headerlink" href="#dost-asti-coare" title="Link to this heading">#</a></h2>
+<p>The Computing and Archiving Research Environment (COARE) was established in 2014 at the Advanced Science and Technology Institute (ASTI) of DOST. COARE is a High-Performance Computing, Data Archiving, and Science Cloud facility that provides free access to its services for the science community.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><img alt="Image 1" src="../../_images/coare-1.png" /></p></td>
+<td><p><img alt="Image 2" src="../../_images/coare-2.png" /></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="coare-services">
+<h2><a class="toc-backref" href="#id10" role="doc-backlink"><span class="section-number">8.4. </span>COARE Services:</a><a class="headerlink" href="#coare-services" title="Link to this heading">#</a></h2>
+<p><em>DOST ASTI COARE has 3 services available:</em></p>
+<ol class="arabic">
+<li><p><strong>High-Performance Computing (HPC)</strong></p>
+<p> The High Performance Computing service is designed to support researchers in their computational tasks, including data analysis and simulations. </p>
+<ul>
+<li><p><strong>Compute node capacity</strong></p>
+<ul class="simple">
+<li><p><em>CPU nodes x 36. Each has:</em></p>
+<ul>
+<li><p>88 logical CPUs, with a total of 3168 Cores(CPU)</p></li>
+<li><p>500 GB RAM, with a total of 18 Terabytes of RAM</p></li>
+</ul>
+</li>
+<li><p>The current capacity is 30 TFLOPS or 30 Trillion Floating point operations per second</p></li>
+</ul>
+<hr class="docutils" />
+<ul class="simple">
+<li><p><em>GPU nodes</em></p>
+<ul>
+<li><p>P40 nodes x 6. Each has:</p>
+<ul>
+<li><p>24 CPUs</p></li>
+<li><p>1 TB RAM</p></li>
+<li><p>NVIDIA Tesla P40 GPU x 1</p></li>
+</ul>
+</li>
+<li><p>A100 nodes  x 2. Each has:</p>
+<ul>
+<li><p>128 CPUs</p></li>
+<li><p>1 TB RAM</p></li>
+<li><p>NVIDIA Tesla A100 GPU x 8</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>The current capacity is 75 TFLOPS or 75 Trillion Floating point operations per second</p></li>
+</ul>
+</li>
+<hr class="docutils" />
+<li><p><strong>Storage capacity</strong></p>
+<ul class="simple">
+<li><p>1015 TB of storage capacity</p></li>
+</ul>
+</li>
+<hr class="docutils" />
+<li><p><strong>Network capacity</strong></p>
+<ul class="simple">
+<li><p>10 gigabits/second</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<ol class="arabic" start="2">
+<li><p><strong>Science Cloud</strong></p>
+<p>Another service provided by COARE is Science Cloud, which is a Platform as a Service (PaaS). This service is cloud-based and ready-to-use for developing, running, maintaining, and managing applications. It is implemented through OpenStack.</p>
+<ul class="simple">
+<li><p>Compute and Storage capacity</p>
+<ul>
+<li><p>3360 Virtual Cores</p></li>
+<li><p>12.5 TB RAM</p></li>
+<li><p>2790 TB of storage capacity</p></li>
+</ul>
+</li>
+</ul>
+<hr class="docutils" />
+<ul class="simple">
+<li><p>Default allocation per user of Science Cloud service.</p>
+<ul>
+<li><p>4 logical core (CPU)</p></li>
+<li><p>8 GB RAM (Memory)</p></li>
+<li><p>100 GB (Storage)</p></li>
+<li><p>4 max number of instances (Instance are the virtual server can be created)</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<ol class="arabic" start="3">
+<li><p><strong>Data Archiving</strong></p>
+<p>Another service offered by COARE is Data Archiving, which provides a repository that can accommodate various storage requirements, offers multiple storage options, and has a large storage capacity for COARE users. This service is implemented through the Data Catalog, a web-based research repository that is accessible to the public. The datasets stored in this repository could be integral for academics, data analysts, scientists, and other scholars in the scientific community.</p>
+<ul class="simple">
+<li><p>1 Petabyte (PB) of storage capacity</p></li>
+</ul>
+</li>
+</ol>
+<section id="who-can-avail-for-the-services">
+<h3><a class="toc-backref" href="#id11" role="doc-backlink"><span class="section-number">8.4.1. </span>Who can avail for the services?</a><a class="headerlink" href="#who-can-avail-for-the-services" title="Link to this heading">#</a></h3>
+<p>COARE services are available and can be used by the following:</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p></p></th>
+<th class="head text-center"><p></p></th>
+<th class="head text-center"><p></p></th>
+<th class="head text-center"><p></p></th>
+<th class="head text-center"><p></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><img alt="Image 1" src="../../_images/meteorologist.png" /></p></td>
+<td class="text-center"><p><img alt="Image 2" src="../../_images/researchers.png" /></p></td>
+<td class="text-center"><p><img alt="Image 3" src="../../_images/weather-forecaster.png" /></p></td>
+<td class="text-center"><p><img alt="Image 4" src="../../_images/scientists.png" /></p></td>
+<td class="text-center"><p><img alt="Image 5" src="../../_images/students.png" /></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>Meteorologist</p></td>
+<td class="text-center"><p>Researchers</p></td>
+<td class="text-center"><p>Weather Forecasters</p></td>
+<td class="text-center"><p>Scientists</p></td>
+<td class="text-center"><p>Students</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="hpc-service-and-users">
+<h3><a class="toc-backref" href="#id12" role="doc-backlink"><span class="section-number">8.4.2. </span>HPC Service and Users</a><a class="headerlink" href="#hpc-service-and-users" title="Link to this heading">#</a></h3>
+<figure class="align-center">
+<img alt="../../_images/hpc_services_n_users.png" src="../../_images/hpc_services_n_users.png" />
+</figure>
+</section>
+<section id="real-life-applications">
+<h3><a class="toc-backref" href="#id13" role="doc-backlink"><span class="section-number">8.4.3. </span>Real Life Applications</a><a class="headerlink" href="#real-life-applications" title="Link to this heading">#</a></h3>
+<p>3KRG Rice Genome Project
+HPC is utilized by various IRRI groups for the analysis of the 3,000 Rice Genomes Project and other newly sequenced genomes</p>
+<figure class="align-center">
+<img alt="../../_images/irri.png" src="../../_images/irri.png" />
+</figure>
+<p>Philippine Rice Information System (PRiSM)
+The first rice monitoring system in Southeast Asia that uses digital technologies, such as remote sensing, GIS, and web platform
+PhilRice uses COARE HPC to process large rice-related datasets, automate the
+download of satellite images, and process and generate maps</p>
+<figure class="align-center">
+<img alt="../../_images/prism.png" src="../../_images/prism.png" />
+</figure>
+<p>Weather Research and Forecasting Project
+PAGASA utilized the HPC service to provide a high-resolution (5km) climate change projection using the WRF model
+Aims to contribute to strengthening communities’ and ecosystems’ resilience
+and adaptive capacity to climate-related hazards and natural disasters by providing timely and accurate disaster and climate information that will support risk-informed planning, particularly at the local level.</p>
+<figure class="align-center">
+<img alt="../../_images/pagasa.png" src="../../_images/pagasa.png" />
+</figure>
+</section>
+</section>
+<section id="basic-commands-for-linux">
+<h2><a class="toc-backref" href="#id14" role="doc-backlink"><span class="section-number">8.5. </span>Basic commands for Linux</a><a class="headerlink" href="#basic-commands-for-linux" title="Link to this heading">#</a></h2>
+<p>Linux commands are essential tools consisting of text-based instructions used for its operating system to perform various tasks and interact with the computer or server. Each command has a specific purpose and syntax, and they are typically written in <em><strong>lowercase</strong></em>.</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../../_images/basic_commands.png"><img alt="../../_images/basic_commands.png" src="../../_images/basic_commands.png" style="width: 510.84999999999997px; height: 655.35px;" /></a>
+</figure>
+<ol class="arabic simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">pwd</span></code>:</strong> Print current directory</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">cd</span></code>:</strong> It stands for “change directory”.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">.</span></code> makes you stay at the same directory you are at.</p></li>
+<li><p>`cd ..`` makes you shift one directory back. For example, you are at “/home/task/files” and you type “cd..” and hit enter. This will move you to “home/task”.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">-</span></code> makes you go to the previous location you were at. For example, you were at “/home” but you moved to “/dir”. Typing “cd-” command will take you back to “/home”.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">~</span></code> will take you to your home directory and “cd /” will take you to root directory.</p></li>
+</ul>
+</li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">mkdir</span></code>:</strong> Create a new directory <br>
+<code class="docutils literal notranslate"><span class="pre">Syntax:</span> <span class="pre">mkdir</span> <span class="pre">&lt;directory-name&gt;</span></code></p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">ls</span></code>:</strong> Stands for list command which is used to display all the contents in a folder or directory.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-a</span></code> will show you all the files in a directory”.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-h</span></code> will show the files while showing their sizes as well.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-r</span></code> will recursively show the subdirectories of the directory</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-alh</span></code> will show you more details about the files contained in a folder. The details include the user permissions, last updated date, date of creation, time and the permission allotted to it like read, write and update.</p></li>
+</ul>
+</li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">cp</span></code>:</strong> Stands for copy command that basically copies a file in Linux. <br>
+<code class="docutils literal notranslate"><span class="pre">Syntax:</span> <span class="pre">cp</span> <span class="pre">&lt;file-source&gt;</span> <span class="pre">&lt;destination-of-the-file&gt;</span></code></p>
+<ul class="simple">
+<li><p>`cp -r`` copies all the contents of a folder.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cp</span> <span class="pre">-f</span></code> will force the copy process by deleting the destination file if a file with the same name happens to be there at the destination.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cp</span> <span class="pre">-i</span></code> will give you a warning message before actually proceeding with the copying process.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cp</span> <span class="pre">-u</span></code> will update the file in the destination folder only if the files have different content.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cp</span> <span class="pre">-n</span></code> will first check if the file already exists and if it does, it just won’t copy. It doesn’t overwrite the file.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cp</span> <span class="pre">-a</span></code> will archive the file.</p></li>
+</ul>
+</li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">mv</span></code>:</strong> Moves the file from one place to another. <br>
+<code class="docutils literal notranslate"><span class="pre">Syntax:</span> <span class="pre">mv</span> <span class="pre">&lt;file-source&gt;</span> <span class="pre">&lt;destination-of-the-file&gt;</span></code></p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">touch</span></code>:</strong> Create a new file with any kind of extension like text, php and html or without extension. <br>
+<code class="docutils literal notranslate"><span class="pre">Syntax:</span> <span class="pre">touch</span> <span class="pre">&lt;filename.extension&gt;</span></code></p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">rm</span></code>:</strong> Delete a file from the server. <br>
+<code class="docutils literal notranslate"><span class="pre">Syntax:</span> <span class="pre">rm</span> <span class="pre">&lt;filename&gt;</span></code></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">rm</span> <span class="pre">*</span></code> will delete all the files or content in a directory.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rmdir</span></code> will remove the complete directory or folder.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rm</span> <span class="pre">-r</span> <span class="pre">filename</span> <span class="pre">or</span> <span class="pre">foldername</span></code> will delete the folder as well as the folders inside it.</p></li>
+</ul>
+</li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">cat</span></code>:</strong> Display content of a file on the screen. <br>
+<code class="docutils literal notranslate"><span class="pre">Syntax:</span> <span class="pre">cat</span> <span class="pre">&lt;filename&gt;</span></code></p>
+<ul class="simple">
+<li><p>The cat command is also used to concatenate two files and show their content combined as one.
+<code class="docutils literal notranslate"><span class="pre">Syntax:</span> <span class="pre">cat</span> <span class="pre">[file1.txt]</span> <span class="pre">[file2.txt]</span> <span class="pre">&gt;</span> <span class="pre">mergedfile.txt</span></code>
+“<em><strong>&gt;</strong></em>” is the output redirection character</p></li>
+<li><p>The cat command can also be used to create a new file.
+<code class="docutils literal notranslate"><span class="pre">Syntax:</span> <span class="pre">cat</span> <span class="pre">&gt;</span> <span class="pre">filename.extension</span></code></p></li>
+</ul>
+</li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">head</span></code>:</strong> Read the first ten lines of the content inside a file. <br>
+<code class="docutils literal notranslate"><span class="pre">Syntax:</span> <span class="pre">head</span> <span class="pre">filename.extension</span></code></p>
+<ul class="simple">
+<li><p>You can also give the names of more than one file in the head command and it will show the first ten lines of each file separately.
+<code class="docutils literal notranslate"><span class="pre">Syntax:</span> <span class="pre">head</span> <span class="pre">/dir1/file1</span> <span class="pre">/dir2/file2</span></code></p></li>
+<li><p>You can also change the number of lines you want to be displayed on the screen rather than the default first ten lines.
+<code class="docutils literal notranslate"><span class="pre">Syntax:</span> <span class="pre">head</span> <span class="pre">-n15</span> <span class="pre">filename.extension</span></code>
+This will display the first fifteen lines of content from the given file.</p></li>
+</ul>
+</li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">tail</span></code>:</strong> Read the last ten lines of content from the file. <br>
+<code class="docutils literal notranslate"><span class="pre">Syntax:</span> <span class="pre">tail</span> <span class="pre">filename.extension</span></code></p>
+<ul class="simple">
+<li><p>Also, you can provide multiple file names to the tail command for it to show last ten lines from each of the mentioned file.
+<code class="docutils literal notranslate"><span class="pre">Syntax:</span> <span class="pre">tail</span> <span class="pre">/dir1/file1</span> <span class="pre">/dir2/file2</span></code></p></li>
+<li><p>Similar to the head command, the tail command also allows you to change the number of lines you want to be displayed other than the default number.
+<code class="docutils literal notranslate"><span class="pre">Syntax:</span> <span class="pre">tail</span> <span class="pre">-n15</span>&#160; <span class="pre">filename.extension</span></code>
+This will display the last fifteen lines of content from the given file.</p></li>
+</ul>
+</li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">tar</span></code>:</strong> It stands for tape archive. Also used to compress and decompress folders. <br></p>
+<ul class="simple">
+<li><p>For compressing, that creates an archive
+<code class="docutils literal notranslate"><span class="pre">Syntax:</span> <span class="pre">tar</span> <span class="pre">-cvf</span> <span class="pre">&lt;output-folder.tar&gt;</span> <span class="pre">&lt;folder-to-compress&gt;</span></code> <br>
+example: <code class="docutils literal notranslate"><span class="pre">tar</span> <span class="pre">-cvf</span> <span class="pre">folder1.tar</span> <span class="pre">demofolder</span></code></p></li>
+<li><p>For decompressing
+<code class="docutils literal notranslate"><span class="pre">Syntax:</span> <span class="pre">tar</span> <span class="pre">-xvf</span> <span class="pre">folder1.tar</span></code></p></li>
+</ul>
+</li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">chmod</span></code>:</strong> Stands for <code class="docutils literal notranslate"><span class="pre">change</span> <span class="pre">mode</span></code>. This command can change permissions of a file or directory. These permissions can be represented either by numbers from 0 to 7 or with alphanumeric characters. 4 represents reading permission, 2 represents writing permission, 1 represents executing permission and 0 represents no permission. <br>
+<code class="docutils literal notranslate"><span class="pre">Syntax:</span> <span class="pre">chmod</span> <span class="pre">754</span> <span class="pre">filename</span></code></p>
+<ul class="simple">
+<li><p>In the above command, 7,5,4 represents the permission for the user, group and others wherein 7 is the combination of 4,2 and 1, which indicates all the three permissions are given to the user.</p></li>
+<li><p>Similarly, 5 is the combination of 4, 0 and 1, which indicates read, no write and execute permission.</p></li>
+<li><p>Also, 4 is the combination of 4, 0 and 0, which indicates read, no write and no execute permission.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">chmod</span> <span class="pre">-r</span></code> lets you change the permission of a folder and all the files inside it as well.</p></li>
+</ul>
+</li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">grep</span></code>:</strong> Search for a particular string inside a file or folder. It returns the whole line containing the phrase if it finds the perfect match. <br>
+<code class="docutils literal notranslate"><span class="pre">Syntax:</span> <span class="pre">grep</span> <span class="pre">“string”</span> <span class="pre">filename</span></code></p>
+<ul class="simple">
+<li><p>The option i in the command “grep -i “string” filename” lets you search for a string case-insensitively in the file.</p></li>
+<li><p>To count the number of appearances of a string in the given file, use the command <code class="docutils literal notranslate"><span class="pre">grep</span> <span class="pre">-c</span> <span class="pre">“string”</span> <span class="pre">filename</span></code>.</p></li>
+<li><p>To display the filename that contains a particular pattern or string using the command <code class="docutils literal notranslate"><span class="pre">grep</span> <span class="pre">-l</span> <span class="pre">“string”</span> <span class="pre">*</span></code>.</p></li>
+<li><p>To display the line number along with the result using the command “grep -n <code class="docutils literal notranslate"><span class="pre">string”</span> <span class="pre">filename</span></code>.</p></li>
+</ul>
+</li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">find</span></code>:</strong> This command searches for a file inside a folder.</p>
+<ul class="simple">
+<li><p>If you want to find a file in some directory, use the command <code class="docutils literal notranslate"><span class="pre">find</span> <span class="pre">/directory</span> <span class="pre">-name</span> <span class="pre">filename.extension</span></code>.</p></li>
+<li><p>You can look for any type of file, say a php file by using the command <code class="docutils literal notranslate"><span class="pre">find</span> <span class="pre">.</span> <span class="pre">type</span> <span class="pre">f</span> <span class="pre">-name</span> <span class="pre">filename.php</span></code>.</p></li>
+</ul>
+</li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">vi</span></code>:</strong> Vi is a classic and lightweight text editor available on most Unix-based systems. In command mode, you can navigate, search, and perform various operations on the text. <br>
+<code class="docutils literal notranslate"><span class="pre">Syntax:</span> <span class="pre">vi</span> <span class="pre">filename.txt</span></code></p>
+<ol class="arabic simple">
+<li><p>Navigate within the file in command mode:</p>
+<ul class="simple">
+<li><p>Use arrow keys or “h” (left), “j” (down), “k” (up), “l” (right) for movement.</p></li>
+<li><p>To search for a word, press “/” and type the word, then press “Enter.”</p></li>
+<li><p>To delete a character, press “x.”</p></li>
+</ul>
+</li>
+<li><p>Enter insert mode to make changes:</p>
+<ul class="simple">
+<li><p>Press “i” to insert text before the cursor.</p></li>
+<li><p>Press “a” to insert text after the cursor.</p></li>
+</ul>
+</li>
+<li><p>Save and exit:</p>
+<ul class="simple">
+<li><p>Press “Esc” to return to command mode.</p></li>
+<li><p>Type <code class="docutils literal notranslate"><span class="pre">:w</span></code> to save changes.</p></li>
+<li><p>Type <code class="docutils literal notranslate"><span class="pre">:wq</span></code> to save and exit.</p></li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">vim</span></code>:</strong> Vim is an extended and feature-rich version of Vi with improved functionality. <br>
+<code class="docutils literal notranslate"><span class="pre">Syntax:</span> <span class="pre">vim</span> <span class="pre">filename.txt</span></code></p>
+<ol class="arabic simple">
+<li><p>Navigate within the file in command mode:</p>
+<ul class="simple">
+<li><p>Use arrow keys or “h,” “j,” “k,” and “l” for movement.</p></li>
+<li><p>To search for a word, press “/” and type the word, then press “Enter.”</p></li>
+<li><p>To delete a character, press “x.”</p></li>
+</ul>
+</li>
+<li><p>Enter insert mode to make changes:</p>
+<ul class="simple">
+<li><p>Press “i” to insert text before the cursor.</p></li>
+<li><p>Press “a” to insert text after the cursor.</p></li>
+</ul>
+</li>
+<li><p>Save and exit:</p>
+<ul class="simple">
+<li><p>Press “Esc” to return to command mode.</p></li>
+<li><p>Type <code class="docutils literal notranslate"><span class="pre">:w</span></code> to save changes.</p></li>
+<li><p>Type <code class="docutils literal notranslate"><span class="pre">:wq</span></code> to save and exit.</p></li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">nano</span></code>:</strong> Nano is a lightweight and straightforward text editor available on many Unix systems. It provides an easy-to-use, menu-driven interface with on-screen help. Unlike Vi/Vim, Nano does not have different modes. It allows you to start editing right away. <br>
+<code class="docutils literal notranslate"><span class="pre">Syntax:</span> <span class="pre">nano</span> <span class="pre">filename.txt</span></code></p>
+<ul class="simple">
+<li><p>Common keyboard shortcuts:</p>
+<ul>
+<li><p>To save the file, press Ctrl + O, then press Enter.</p></li>
+<li><p>To exit Nano, press Ctrl + X.</p></li>
+<li><p>To cut (delete) text, press Ctrl + K.</p></li>
+<li><p>To paste text, press Ctrl + U.</p></li>
+<li><p>To search for text, press Ctrl + W.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="connect-to-a-high-performance-computing-hpc">
+<h2><a class="toc-backref" href="#id15" role="doc-backlink"><span class="section-number">8.6. </span>Connect to a High-Performance Computing (HPC)</a><a class="headerlink" href="#connect-to-a-high-performance-computing-hpc" title="Link to this heading">#</a></h2>
+<p>To connect to an HPC, you will need to use an SSH client. Some popular SSH client software includes:</p>
+<ul class="simple">
+<li><p><strong>PuTTY (Windows):</strong> PuTTY is a free and open-source SSH and telnet client for Windows. It is a popular choice for connecting to remote Linux servers. PuTTY is also known for its support for a wide range of authentication methods, including passwords, public key authentication, and Kerberos.</p></li>
+<li><p><strong>mRemoteNG (Windows):</strong> mRemoteNG is a free and open-source remote connection manager for Windows. It supports a variety of remote connection protocols, including SSH, RDP, VNC, and Telnet.</p></li>
+<li><p><strong>OpenSSH (Linux and macOS):</strong> OpenSSH is a free and open-source suite of cryptographic tools that includes an SSH client and server. It is the default SSH client and server on Linux and macOS systems. OpenSSH is a powerful and versatile SSH tool, and it is used by millions of people around the world.</p></li>
+<li><p><strong>Termius (macOS):</strong> Termius is a commercial SSH and telnet client for macOS. It is known for its user-friendly interface.</p></li>
+</ul>
+<p>Once you have installed an SSH client, you will need to know the hostname or IP address of the HPC, as well as your username and password. This information should be provided to you by the HPC administrator.</p>
+<section id="connect-to-an-hpc-from-windows-10-linux-or-macos-using-terminal-and-other-cli-software">
+<h3><a class="toc-backref" href="#id16" role="doc-backlink"><span class="section-number">8.6.1. </span>Connect to an HPC from Windows 10, Linux or MacOS using terminal and other CLI software:</a><a class="headerlink" href="#connect-to-an-hpc-from-windows-10-linux-or-macos-using-terminal-and-other-cli-software" title="Link to this heading">#</a></h3>
+<ol class="arabic">
+<li><p>Open a terminal window.</p></li>
+<li><p>Type the following command, replace <em><strong>hostname</strong></em> with the hostname or IP address of the HPC:</p>
+<p><em><code class="docutils literal notranslate"><span class="pre">ssh</span> <span class="pre">your_username&#64;&lt;hostname</span> <span class="pre">or</span> <span class="pre">ip</span> <span class="pre">address&gt;</span></code></em></p>
+</li>
+<li><p>If you are asked for a password, enter your password.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><em>You can also use SSH keys instead of passwords by generating them on your local machine and copying them over to the remote server.</em></p>
+</div>
+</li>
+<li><p>After successfully logging in, you will now be connected to the HPC and can execute commands as if you were on the HPC itself.</p></li>
+<li><p>When you’re done, type <code class="docutils literal notranslate"><span class="pre">exit</span></code> to close the connection, and you’ll be redirected back to your local machine.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><em>Some may encounter an error while using the passwordless access (SSH keys) to access the HPC. These are some common errors:</em></p>
+<ul class="simple">
+<li><p><em><strong>Permission denied (publickey) :</strong></em> This error indicates that you haven’t added the public key on the remote server yet.</p></li>
+<li><p><em><strong>Permission denied (publickey) :</strong></em> To resolve this issue, you need to add the public key to the authorized_keys file on the remote server.</p></li>
+<li><p><em><strong>Bad Permissions (Unprotected private key file!) :</strong></em> This error occurs when the permissions on your private key file are too open or allow access to others. To resolve this issue, it’s best practice to change the permission type of your private key file to 600 (read and write for the user only).</p></li>
+</ul>
+</div>
+</li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><img alt="Linux-MacOS" src="../../_images/linux-terminal.png" /></p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><em>Image of a wsl (Windows subsystem for linux)</em></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="connect-to-an-hpc-from-windows-using-putty">
+<h3><a class="toc-backref" href="#id17" role="doc-backlink"><span class="section-number">8.6.2. </span>Connect to an HPC from Windows using PuTTY:</a><a class="headerlink" href="#connect-to-an-hpc-from-windows-using-putty" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Open PuTTY.</p></li>
+<li><p>In the “<em>Host Name (or IP address)</em>” field, enter the hostname or IP address of the HPC.</p></li>
+<li><p>In the “<em>Port</em>” field, enter 22 (the default SSH port).</p></li>
+<li><p>Click the “<em>Open</em>” button.</p></li>
+<li><p>When prompted, enter your username and password.</p></li>
+<li><p>Once you have connected to the HPC, you will be able to access your files and run jobs.</p></li>
+</ol>
+<figure class="align-center" id="id3">
+<a class="reference internal image-reference" href="../../_images/putty.png"><img alt="putty" src="../../_images/putty.png" style="width: 577.15px; height: 576.3px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 8.3 </span><span class="caption-text"><em>Putty (Windows)</em></span><a class="headerlink" href="#id3" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="id4">
+<a class="reference internal image-reference" href="../../_images/putty-terminal.png"><img alt="putty-terminal" src="../../_images/putty-terminal.png" style="width: 616.85px; height: 117.65px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 8.4 </span><span class="caption-text"><em>An example of being prompted for username and password</em></span><a class="headerlink" href="#id4" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><em>Private key can also be use while using the PuTTY.</em></p>
+<ul class="simple">
+<li><p><em>Expand <code class="docutils literal notranslate"><span class="pre">Connection</span> <span class="pre">tab/category</span></code></em></p></li>
+<li><p><em>Expand <code class="docutils literal notranslate"><span class="pre">SSH</span> <span class="pre">tab/category</span></code></em></p></li>
+<li><p><em>Click the <code class="docutils literal notranslate"><span class="pre">Auth</span></code> and find <code class="docutils literal notranslate"><span class="pre">Private</span> <span class="pre">key</span> <span class="pre">file</span> <span class="pre">for</span> <span class="pre">authentication:</span></code></em></p></li>
+<li><p><em>Browse your Private key file</em></p></li>
+</ul>
+</div>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../../_images/putty-with-private-key.png"><img alt="putty-private-key" src="../../_images/putty-with-private-key.png" style="width: 456.0px; height: 438.0px;" /></a>
+</figure>
+</section>
+<section id="generate-ssh-key-pairs">
+<h3><a class="toc-backref" href="#id18" role="doc-backlink"><span class="section-number">8.6.3. </span>Generate SSH Key Pairs</a><a class="headerlink" href="#generate-ssh-key-pairs" title="Link to this heading">#</a></h3>
+<p>The SSH key pair consists of a private key and a public key. The public key should be provided to COARE, while the private key should be securely stored on your personal device (<em>which can be your personal computer or in the cloud</em>). The private key will be used every time a user logs in to the HPC.</p>
+<section id="generate-using-linux-macos-wsl">
+<h4><a class="toc-backref" href="#id19" role="doc-backlink"><span class="section-number">8.6.3.1. </span>Generate using Linux / MacOS / WSL</a><a class="headerlink" href="#generate-using-linux-macos-wsl" title="Link to this heading">#</a></h4>
+<ol class="arabic">
+<li><p>Open a terminal window.</p></li>
+<li><p>Type the following command:
+<em><strong><code class="docutils literal notranslate"><span class="pre">ssh-keygen</span> <span class="pre">[&lt;args&gt;]</span></code></strong></em></p></li>
+<li><p>When prompted, enter a filename for the private key. The default filename is <code class="docutils literal notranslate"><span class="pre">id_rsa</span></code>.</p></li>
+<li><p>You will also be prompted to enter a passphrase for your private key. This passphrase is used to encrypt your private key, so it is important to choose a strong one.</p></li>
+<li><p>Re-enter the passphrase to confirm it.</p></li>
+<li><p>Once the private key has been generated, ssh-keygen will generate the corresponding public key and save it to a file with the <code class="docutils literal notranslate"><span class="pre">.pub</span></code> extension. The default filename is <code class="docutils literal notranslate"><span class="pre">id_rsa.pub</span></code>.</p></li>
+<li><p>By default, the location of the key pair will be on the <code class="docutils literal notranslate"><span class="pre">/home-directory/user/.ssh/</span></code> folder.</p>
+<p>Here is an example of how to generate a private/public key pair using ssh-keygen:</p>
+</li>
+</ol>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../../_images/ssh-keygen-1.png"><img alt="ssh-keygen" src="../../_images/ssh-keygen-1.png" style="width: 768.0px; height: 382.5px;" /></a>
+</figure>
+</section>
+<section id="generate-using-putty-key-generator-windows">
+<h4><a class="toc-backref" href="#id20" role="doc-backlink"><span class="section-number">8.6.3.2. </span>Generate using PuTTY key Generator (Windows)</a><a class="headerlink" href="#generate-using-putty-key-generator-windows" title="Link to this heading">#</a></h4>
+<ol class="arabic">
+<li><p>Open PuTTYgen.</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../../_images/puttygen.png"><img alt="../../_images/puttygen.png" src="../../_images/puttygen.png" style="width: 514.25px; height: 408.84999999999997px;" /></a>
+</figure>
+</li>
+<li><p>Select the type of key to generate.</p></li>
+<li><p>Enter the number of bits in the key. 2048 bits is a good key size for most purposes.</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../../_images/puttygen2.png"><img alt="../../_images/puttygen2.png" src="../../_images/puttygen2.png" style="width: 518.5px; height: 406.3px;" /></a>
+</figure>
+</li>
+<li><p>Click Generate.</p></li>
+<li><p>Move the mouse around the blank area of the Key section to generate random characters. The green progress bar will advance as you move the mouse.</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../../_images/puttygen3.png"><img alt="../../_images/puttygen3.png" src="../../_images/puttygen3.png" style="width: 515.1px; height: 406.3px;" /></a>
+</figure>
+</li>
+<li><p>(Optional) Enter a passphrase in the Key passphrase and Confirm passphrase fields. A passphrase adds an extra layer of security to your key pair.</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../../_images/puttygen4.png"><img alt="../../_images/puttygen4.png" src="../../_images/puttygen4.png" style="width: 512.55px; height: 407.15px;" /></a>
+</figure>
+</li>
+<li><p>Click Save private key.</p></li>
+<li><p>Save the private key file to a secure location.</p></li>
+<li><p>Click Save public key.</p></li>
+<li><p>Save the public key file to a secure location.</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../../_images/puttygen5.png"><img alt="../../_images/puttygen5.png" src="../../_images/puttygen5.png" style="width: 514.25px; height: 407.15px;" /></a>
+</figure>
+</li>
+</ol>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Keep in mind that this private key is your personal belonging. <br>
+<strong>DO NOT</strong> send to anyone else your private key.</p>
+</div>
+</section>
+</section>
+</section>
+<section id="accessing-dost-asti-coare-hpc">
+<h2><a class="toc-backref" href="#id21" role="doc-backlink"><span class="section-number">8.7. </span>Accessing DOST-ASTI COARE HPC</a><a class="headerlink" href="#accessing-dost-asti-coare-hpc" title="Link to this heading">#</a></h2>
+<p>The DOST-ASTI COARE HPC is accessible only through <em><strong>passwordless SSH</strong></em>, which requires appending SSH key(s) to the user’s account. To apply for an account, please click this <a class="reference external" href="https://asti.dost.gov.ph/coare/wiki/Main/using-coare/applying-for-access/first-time-access/">link</a>. <br></p>
+<p>Once you have applied for the account and your public key has been appended, you can log in to the HPC.</p>
+<section id="logging-in-using-linux-macos-wsl">
+<h3><a class="toc-backref" href="#id22" role="doc-backlink"><span class="section-number">8.7.1. </span>Logging In using Linux / MacOS / WSL</a><a class="headerlink" href="#logging-in-using-linux-macos-wsl" title="Link to this heading">#</a></h3>
+<p>To login to the HPC, use this command in your preferred terminal: <br>
+<em><strong><code class="docutils literal notranslate"><span class="pre">ssh</span> <span class="pre">-i</span> <span class="pre">&lt;path-to-your-ssh-private-key&gt;</span> <span class="pre">&lt;username&gt;&#64;saliksik.asti.dost.gov.ph</span> <span class="pre">-v</span></code></strong></em></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><em>Log in using <strong>IP Address</strong>, use the command.</em> <br>
+<em><strong><code class="docutils literal notranslate"><span class="pre">ssh</span> <span class="pre">-i</span> <span class="pre">&lt;path-to-your-ssh-private-key&gt;</span> <span class="pre">&lt;username&gt;&#64;202.90.149.55</span> <span class="pre">-v</span></code></strong></em></p>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-i</span></code> option specifies the path to your private key file, for default this is located to <code class="docutils literal notranslate"><span class="pre">~/.ssh/id_rsa</span></code>. <br></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-v</span></code> option will print more messages about its operation. This can be helpful for error messages and other relevant details. Adding more <code class="docutils literal notranslate"><span class="pre">v</span></code> will increase its verbosity (<em>i.e</em>., <code class="docutils literal notranslate"><span class="pre">-vv</span></code> and <code class="docutils literal notranslate"><span class="pre">-vvv</span></code>). <br></p></li>
+</ul>
+<p>After successfully logging in, a welcome page will be displayed.</p>
+<figure class="align-center" id="id5">
+<a class="reference internal image-reference" href="../../_images/coare-login.png"><img alt="../../_images/coare-login.png" src="../../_images/coare-login.png" style="width: 680.85px; height: 407.15px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 8.5 </span><span class="caption-text"><em>A welcome page after logging in successfully</em></span><a class="headerlink" href="#id5" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="logging-in-using-putty-windows">
+<h3><a class="toc-backref" href="#id23" role="doc-backlink"><span class="section-number">8.7.2. </span>Logging  In using PuTTY (Windows)</a><a class="headerlink" href="#logging-in-using-putty-windows" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Open PuTTY.</p></li>
+<li><p>In the “<em>Host Name (or IP address)</em>” field, enter the hostname or IP address of the COARE HPC.</p></li>
+<li><p>In the “<em>Port</em>” field, enter 22 (the default SSH port).</p></li>
+</ol>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../../_images/putty.png"><img alt="../../_images/putty.png" src="../../_images/putty.png" style="width: 577.15px; height: 576.3px;" /></a>
+</figure>
+<ol class="arabic simple" start="4">
+<li><p>Click the <code class="docutils literal notranslate"><span class="pre">Auth</span></code> and browse your <code class="docutils literal notranslate"><span class="pre">Private</span> <span class="pre">key</span></code></p></li>
+<li><p>Click the “<em>Open</em>” button.</p></li>
+</ol>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../../_images/putty-with-private-key.png"><img alt="../../_images/putty-with-private-key.png" src="../../_images/putty-with-private-key.png" style="width: 387.59999999999997px; height: 372.3px;" /></a>
+</figure>
+</section>
+</section>
+<section id="upload-and-downloading-files">
+<h2><a class="toc-backref" href="#id24" role="doc-backlink"><span class="section-number">8.8. </span>Upload and Downloading files</a><a class="headerlink" href="#upload-and-downloading-files" title="Link to this heading">#</a></h2>
+<p>Uploading and downloading files from the server refers to the two-way process of sending files from a local device to a remote server (<strong>uploading</strong>) or retrieving files from the server to the local device (<strong>downloading</strong>). This common data transfer method is essential for tasks like sharing documents, accessing cloud storage, and ensuring data backups and synchronization between devices.</p>
+<section id="scp-linux-macos-wsl">
+<h3><a class="toc-backref" href="#id25" role="doc-backlink"><span class="section-number">8.8.1. </span>scp ( Linux / MacOS / WSL)</a><a class="headerlink" href="#scp-linux-macos-wsl" title="Link to this heading">#</a></h3>
+<p>Secure Copy Protocol (SCP), is a command-line tool for securely transferring files between a local and a remote host using the SSH (Secure Shell) protocol. It provides a straightforward and secure way to copy files and directories, ensuring data encryption during transmission. SCP is commonly used for tasks like uploading and downloading files to and from remote servers, making it an essential tool for developers, and users who need to move files between local and remote systems with confidence in their data’s security. <br>
+<code class="docutils literal notranslate"><span class="pre">Syntax:</span> <span class="pre">scp</span> <span class="pre">[options]</span> <span class="pre">source_file_or_directory</span> <span class="pre">destination</span></code> <br></p>
+<p><strong>[options]</strong>: This part is optional and allows you to specify various options to customize the behavior of SCP. Some common options include:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-r</span></code>: Recursively copy directories and their contents.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-P</span> <span class="pre">&lt;port&gt;</span></code>: Specify a non-standard SSH port to connect to the remote host.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-i</span> <span class="pre">&lt;identity_file&gt;</span></code>: Use a specific SSH private key file for authentication.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-v</span></code>: Enable verbose mode for more detailed output.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-q</span></code>: Quiet mode, which suppresses non-error messages.</p></li>
+</ul>
+<p>Here are some examples of <code class="docutils literal notranslate"><span class="pre">SCP</span></code> usage:</p>
+<ol class="arabic simple">
+<li><p>Copy a local file to a remote server: <br>
+<code class="docutils literal notranslate"><span class="pre">scp</span> <span class="pre">local_file.txt</span> <span class="pre">user&#64;remote_server:/path/to/remote/directory/</span></code></p></li>
+<li><p>Copy a remote file to a local directory: <br>
+<code class="docutils literal notranslate"><span class="pre">scp</span> <span class="pre">user&#64;remote_server:/path/to/remote_file.txt</span> <span class="pre">/local/directory/</span></code></p></li>
+</ol>
+</section>
+<section id="winscp-windows">
+<h3><a class="toc-backref" href="#id26" role="doc-backlink"><span class="section-number">8.8.2. </span>WinSCP ( Windows )</a><a class="headerlink" href="#winscp-windows" title="Link to this heading">#</a></h3>
+<p>WinSCP (Windows Secure Copy) is a popular and user-friendly graphical file transfer tool for Windows. It combines the functionality of SCP (Secure Copy Protocol) with an easy-to-use interface, allowing users to securely transfer files between a local Windows computer and a remote server over SSH (Secure Shell) or SFTP (SSH File Transfer Protocol). WinSCP offers features like drag-and-drop file transfers, remote file management, and text editor integration, making it a convenient choice for Windows users who need to interact with remote servers. <br>
+Download and install <a class="reference external" href="https://winscp.net/eng/download.php">WinSCP</a> on your Windows computer and launch the application.</p>
+<p>To log in to the HPC, enter the following parameters in its interface:</p>
+<ol class="arabic simple">
+<li><p>File protocol: SFTP</p></li>
+<li><p>Host name: saliksik.asti.dost.gov.ph (or 202.90.149.55)</p></li>
+<li><p>Port number: 22</p></li>
+<li><p>User name: (your HPC username)</p></li>
+<li><p>Password: (leave as blank)</p></li>
+</ol>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../../_images/winscp.png"><img alt="../../_images/winscp.png" src="../../_images/winscp.png" style="width: 570.35px; height: 434.34999999999997px;" /></a>
+</figure>
+<ol class="arabic simple" start="6">
+<li><p>Click <code class="docutils literal notranslate"><span class="pre">Advanced...</span></code> button, this will bring up the Advanced Site Settings window.</p></li>
+<li><p>Navigate <code class="docutils literal notranslate"><span class="pre">Authentication</span></code> tab</p></li>
+<li><p>Under the <code class="docutils literal notranslate"><span class="pre">Private</span> <span class="pre">key</span> <span class="pre">file:</span></code> browse the private key that was created using PuTTYgen.</p></li>
+<li><p>Click Ok.</p></li>
+</ol>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../../_images/winscp-2.png"><img alt="../../_images/winscp-2.png" src="../../_images/winscp-2.png" style="width: 481.95px; height: 392.7px;" /></a>
+</figure>
+<ol class="arabic simple" start="10">
+<li><p>Click the <code class="docutils literal notranslate"><span class="pre">Login</span></code> button to connect to the HPC. Upon successful log in, WinSCP will bring up new interface where local and remote files are shown. Left portion will be for local and right portion for remote files.</p></li>
+</ol>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../../_images/winscp-3.png"><img alt="../../_images/winscp-3.png" src="../../_images/winscp-3.png" style="width: 753.9499999999999px; height: 584.8px;" /></a>
+</figure>
+</section>
+</section>
+<section id="modules-and-environments">
+<h2><a class="toc-backref" href="#id27" role="doc-backlink"><span class="section-number">8.9. </span>Modules and Environments</a><a class="headerlink" href="#modules-and-environments" title="Link to this heading">#</a></h2>
+<p>Modules simplify access to necessary tools, enabling users to switch between configurations and software versions without conflicts, ensuring an efficient computing environment. In HPC servers, environments are custom configurations for scientific tasks, combining software modules, system settings, and resources tailored to specific projects. Users select and activate these setups for efficient and dependency-ready computations.</p>
+<section id="module-commands">
+<h3><a class="toc-backref" href="#id28" role="doc-backlink"><span class="section-number">8.9.1. </span>Module Commands</a><a class="headerlink" href="#module-commands" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>View available modules: <br>
+<code class="docutils literal notranslate"><span class="pre">Syntax:</span> <span class="pre">module</span> <span class="pre">avail</span></code></p></li>
+</ol>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../../_images/module-avail.png"><img alt="../../_images/module-avail.png" src="../../_images/module-avail.png" style="width: 816.85px; height: 156.4px;" /></a>
+</figure>
+<ol class="arabic simple" start="2">
+<li><p>Load a module: <br>
+<code class="docutils literal notranslate"><span class="pre">Syntax:</span> <span class="pre">module</span> <span class="pre">load</span> <span class="pre">&lt;module_name/version&gt;</span></code></p></li>
+<li><p>Check loaded modules: <br>
+<code class="docutils literal notranslate"><span class="pre">Syntax:</span> <span class="pre">module</span> <span class="pre">list</span></code></p></li>
+<li><p>Unload a module: <br>
+<code class="docutils literal notranslate"><span class="pre">Syntax:</span> <span class="pre">module</span> <span class="pre">unload</span> <span class="pre">&lt;module_name&gt;</span></code></p></li>
+<li><p>Unload all loaded modules <br>
+<code class="docutils literal notranslate"><span class="pre">Syntax:</span> <span class="pre">module</span> <span class="pre">purge</span></code></p></li>
+</ol>
+</section>
+<section id="anaconda-environment">
+<h3><a class="toc-backref" href="#id29" role="doc-backlink"><span class="section-number">8.9.2. </span>Anaconda ( Environment )</a><a class="headerlink" href="#anaconda-environment" title="Link to this heading">#</a></h3>
+<p>Anaconda is a package and environment manager written primarily in Python and create isolated environments for different projects.</p>
+<ol class="arabic simple">
+<li><p>Initialize the conda <br>
+<code class="docutils literal notranslate"><span class="pre">Syntax:</span> <span class="pre">module</span> <span class="pre">load</span> <span class="pre">anaconda/3-2023.07-2</span></code></p></li>
+<li><p>Create a new anaconda environment <br>
+<code class="docutils literal notranslate"><span class="pre">Syntax:</span> <span class="pre">conda</span> <span class="pre">create</span> <span class="pre">--name</span> <span class="pre">myenv</span> <span class="pre">python</span></code> or <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">create</span> <span class="pre">--name</span> <span class="pre">myenv</span> <span class="pre">python=3.8</span></code></p></li>
+<li><p>Activate the environment <br>
+<code class="docutils literal notranslate"><span class="pre">Syntax:</span> <span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">myenv</span></code></p></li>
+<li><p>Install packages. For example, to install the numpy package:
+<code class="docutils literal notranslate"><span class="pre">Syntax:</span> <span class="pre">conda</span> <span class="pre">install</span> <span class="pre">numpy</span></code></p></li>
+<li><p>Deactivate the environment <br>
+<code class="docutils literal notranslate"><span class="pre">Syntax:</span> <span class="pre">conda</span> <span class="pre">deactivate</span></code></p></li>
+</ol>
+</section>
+</section>
+<section id="slurm">
+<h2><a class="toc-backref" href="#id30" role="doc-backlink"><span class="section-number">8.10. </span>SLURM</a><a class="headerlink" href="#slurm" title="Link to this heading">#</a></h2>
+<p>SLURM (Simple Linux Utility for Resource Management) is the native scheduler software for COARE’s HPC cluster. It efficiently allocates and manages computing resources, including CPUs, memory, and GPUs, among multiple users and tasks. Users can submit, monitor, and optimize jobs, ensuring efficient resource utilization in high-performance computing environments.</p>
+<section id="partitions-and-quality-of-service-qos">
+<h3><a class="toc-backref" href="#id31" role="doc-backlink"><span class="section-number">8.10.1. </span>Partitions and Quality-of-Service (QOS)</a><a class="headerlink" href="#partitions-and-quality-of-service-qos" title="Link to this heading">#</a></h3>
+<p>The compute nodes are grouped into partitions and each partition has its default QOS.</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p><strong>Partition</strong></p></th>
+<th class="head text-left"><p><strong>Nodes</strong></p></th>
+<th class="head text-left"><p><strong>QOS</strong></p></th>
+<th class="head text-right"><p><strong>Limits</strong></p></th>
+<th class="head text-right"><p><strong>Remarks</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>debug</p></td>
+<td class="text-left"><p>saliksik-cpu-[21-22]</p></td>
+<td class="text-left"><p>debug_default</p></td>
+<td class="text-right"><p>86 CPUs, 1 day run time</p></td>
+<td class="text-right"><p></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>batch</p></td>
+<td class="text-left"><p>saliksik-cpu-[01-20,25-36]</p></td>
+<td class="text-left"><p>batch_default</p></td>
+<td class="text-right"><p>86 CPUs, 7 days run time</p></td>
+<td class="text-right"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>serial</p></td>
+<td class="text-left"><p>saliksik-cpu-[23-24]</p></td>
+<td class="text-left"><p>serial_default</p></td>
+<td class="text-right"><p>86 CPUs, 14 days run time</p></td>
+<td class="text-right"><p></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>gpu</p></td>
+<td class="text-left"><p>saliksik-gpu-[01-06]</p></td>
+<td class="text-left"><p>gpu-p40_default</p></td>
+<td class="text-right"><p>12 CPUs, 1 GPU, 3 days run time</p></td>
+<td class="text-right"><p>To use the GPU, use either the <br> <code class="docutils literal notranslate"><span class="pre">#SBATCH</span> <span class="pre">--gres=gpu:p40:1</span></code> or <br> <code class="docutils literal notranslate"><span class="pre">#SBATCH</span> <span class="pre">--gres=gpu:1</span></code> job parameter</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>gpu_a100</p></td>
+<td class="text-left"><p>saliksik-gpu-[09-10]</p></td>
+<td class="text-left"><p><em>currently for limited access only</em></p></td>
+<td class="text-right"><p></p></td>
+<td class="text-right"><p></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="job-parameters">
+<h3><a class="toc-backref" href="#id32" role="doc-backlink"><span class="section-number">8.10.2. </span>Job Parameters</a><a class="headerlink" href="#job-parameters" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Required Parameters:</strong> <br>
+These are required prior to run any job.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--account:</span></code> (string) group account where job quotas are set;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--partition:</span></code> (string) which partition the job will be submitted to;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--qos:</span></code> (string) the appropriate QOS in the partition;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--nodes:</span></code> (integer) number of nodes to request;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--ntasks:</span></code> (integer) total number of CPUs to request;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--output:</span></code> (string) job log file</p></li>
+</ul>
+</li>
+<li><p><strong>Optional Parameters:</strong> <br></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--ntasks-per-node:</span></code> (integer) specify the number of CPUs per node to be requested (must not contradict –ntasks if also specified);</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--mem:</span></code> (string) memory per node (e.g., 1G, 500K, 4GB, etc.);</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--job-name:</span></code> (string) name for the job; will be displayed in job monitoring commands (as discussed later);</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--error:</span></code> (string) job error file; recommended to not define this parameter and use only –output instead;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--requeue:</span></code> (no arg) make job eligible for requeue;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--mail-type:</span></code> (string) send an email to the user when the job is in the specified status, such as NONE, BEGIN, END, FAIL, REQUEUE, ALL, etc. (see sbatch manual for more info);</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--mail-user:</span></code> (string) user’s email address;</p></li>
+</ul>
+</li>
+</ol>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference external" href="https://slurm.schedmd.com/sbatch.html">SLURM (sbatch)</a></p>
+</div>
+</section>
+<section id="job-script">
+<h3><a class="toc-backref" href="#id33" role="doc-backlink"><span class="section-number">8.10.3. </span>Job Script</a><a class="headerlink" href="#job-script" title="Link to this heading">#</a></h3>
+<p>A job script outlines a computational task’s specifics, including software, resource allocation, and input/output files. It’s crucial for managing and executing complex workloads in HPC environments. <br>
+Here is sample job script.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1">#SBATCH --account=&lt;slurm_group_acct&gt;</span>
+<span class="c1">#SBATCH --partition=&lt;partition&gt;</span>
+<span class="c1">#SBATCH --qos=&lt;qos&gt;</span>
+<span class="c1">#SBATCH --nodes=&lt;num_nodes&gt;</span>
+<span class="c1">#SBATCH --ntasks=&lt;num_cpus&gt;</span>
+<span class="c1">#SBATCH --job-name=&quot;&lt;jobname&gt;&quot;</span>
+<span class="c1">#SBATCH --output=&quot;%x.out&quot;         ## &lt;jobname&gt;.&lt;jobid&gt;.out</span>
+<span class="c1">##SBATCH --mail-type=ALL          ## optional</span>
+<span class="c1">##SBATCH --mail-user=&lt;email_add&gt;  ## optional</span>
+<span class="c1">##SBATCH --requeue                ## optional</span>
+<span class="c1">##SBATCH --ntasks-per-node=1      ## optional</span>
+<span class="c1">##SBATCH --mem=24G                ## optional: mem per node</span>
+<span class="c1">##SBATCH --error=&quot;%x.%j.err&quot;      ## optional; better to use --output only</span>
+
+<span class="c1">## For more `sbatch` options, use `man sbatch` in the HPC, or go to https://slurm.schedmd.com/sbatch.html.</span>
+
+<span class="c1">## Set stack size to unlimited.</span>
+<span class="nb">ulimit</span><span class="w"> </span>-s<span class="w"> </span>unlimited
+
+<span class="c1">## Benchmarking.</span>
+<span class="nv">start_time</span><span class="o">=</span><span class="k">$(</span>date<span class="w"> </span>+%s.%N<span class="k">)</span>
+
+<span class="c1">## Print job parameters.</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Submitted on </span><span class="k">$(</span>date<span class="k">)</span><span class="s2">&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;JOB PARAMETERS&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;SLURM_JOB_ID          : </span><span class="si">${</span><span class="nv">SLURM_JOB_ID</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;SLURM_JOB_NAME        : </span><span class="si">${</span><span class="nv">SLURM_JOB_NAME</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;SLURM_JOB_NUM_NODES   : </span><span class="si">${</span><span class="nv">SLURM_JOB_NUM_NODES</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;SLURM_JOB_NODELIST    : </span><span class="si">${</span><span class="nv">SLURM_JOB_NODELIST</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;SLURM_NTASKS          : </span><span class="si">${</span><span class="nv">SLURM_NTASKS</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;SLURM_NTASKS_PER_NODE : </span><span class="si">${</span><span class="nv">SLURM_NTASKS_PER_NODE</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;SLURM_MEM_PER_NODE    : </span><span class="si">${</span><span class="nv">SLURM_MEM_PER_NODE</span><span class="si">}</span><span class="s2">&quot;</span>
+
+<span class="c1">## Create a unique temporary folder in the node. Using a local temporary folder usually results in faster read/write for temporary files.</span>
+<span class="nv">custom_tmpdir</span><span class="o">=</span><span class="s2">&quot;yes&quot;</span>
+
+<span class="k">if</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span><span class="nv">$custom_tmpdir</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;yes&quot;</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">   </span><span class="nv">JOB_TMPDIR</span><span class="o">=</span>/tmp/<span class="si">${</span><span class="nv">USER</span><span class="si">}</span>/SLURM_JOB_ID/<span class="si">${</span><span class="nv">SLURM_JOB_ID</span><span class="si">}</span>
+<span class="w">   </span>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="si">${</span><span class="nv">JOB_TMPDIR</span><span class="si">}</span>
+<span class="w">   </span><span class="nb">export</span><span class="w"> </span><span class="nv">TMPDIR</span><span class="o">=</span><span class="si">${</span><span class="nv">JOB_TMPDIR</span><span class="si">}</span>
+<span class="w">   </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;TMPDIR                : </span><span class="nv">$TMPDIR</span><span class="s2">&quot;</span>
+<span class="k">fi</span>
+
+<span class="c1">## Reset modules.</span>
+module<span class="w"> </span>purge
+module<span class="w"> </span>load<span class="w"> </span>&lt;module1&gt;<span class="w"> </span><span class="o">[</span>&lt;module2&gt;<span class="w"> </span>...<span class="o">]</span>
+
+<span class="c1">## Main job. Run your codes and executables here; `srun` is optional.</span>
+<span class="o">[</span>srun<span class="o">]</span><span class="w"> </span>/path/to/exe1<span class="w"> </span>&lt;arg1&gt;<span class="w"> </span>...
+<span class="o">[</span>srun<span class="o">]</span><span class="w"> </span>/path/to/exe2<span class="w"> </span>&lt;arg2&gt;<span class="w"> </span>...
+
+<span class="c1">## Flush the TMPDIR.</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[[</span><span class="w"> </span><span class="nv">$custom_tmp</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;yes&quot;</span><span class="w"> </span><span class="o">]]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">   </span>rm<span class="w"> </span>-rf<span class="w"> </span><span class="nv">$TMPDIR</span>
+<span class="w">   </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Cleared the TMPDIR (</span><span class="si">${</span><span class="nv">TMPDIR</span><span class="si">}</span><span class="s2">)&quot;</span>
+<span class="k">fi</span>
+
+<span class="c1">## Benchmarking</span>
+<span class="nv">end_time</span><span class="o">=</span><span class="k">$(</span>date<span class="w"> </span>+%s.%N<span class="k">)</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Finished on </span><span class="k">$(</span>date<span class="k">)</span><span class="s2">&quot;</span>
+<span class="nv">run_time</span><span class="o">=</span><span class="k">$(</span>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;print(</span><span class="nv">$end_time</span><span class="s2"> - </span><span class="nv">$start_time</span><span class="s2">)&quot;</span><span class="k">)</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Total runtime (sec): </span><span class="si">${</span><span class="nv">run_time</span><span class="si">}</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="job-management">
+<h3><a class="toc-backref" href="#id34" role="doc-backlink"><span class="section-number">8.10.4. </span>Job Management</a><a class="headerlink" href="#job-management" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Submit Job Script</strong> <br>
+It is recommended to submit the job inside the folder containing the job script. It is also recommended that any and all input and/or output files be within the same folder where the job script is located. This is to avoid changing working directories which may result in confusion and possible errors in accessing files/folders. For example, if the job folder is at <code class="docutils literal notranslate"><span class="pre">/home/username/scratch3/test-job</span></code> where all the necessary input files are stored together with the job script named <code class="docutils literal notranslate"><span class="pre">job.sbatch</span></code>. <br>
+<code class="docutils literal notranslate"><span class="pre">Syntax:</span> <span class="pre">cd</span> <span class="pre">/home/username/scratch3/test-job</span></code> This is to ensure that the job will run on the scratch folder
+<code class="docutils literal notranslate"><span class="pre">Syntax:</span> <span class="pre">sbatch</span> <span class="pre">job.sbatch</span></code> or <code class="docutils literal notranslate"><span class="pre">sbatch</span> <span class="pre">job.sh</span></code></p></li>
+<li><p><strong>Show Job Queue</strong> <br>
+<code class="docutils literal notranslate"><span class="pre">Syntax:</span> <span class="pre">squeue</span> <span class="pre">-u</span> <span class="pre">&lt;username&gt;</span></code></p></li>
+<li><p><strong>Show Job Parameters</strong> <br>
+<code class="docutils literal notranslate"><span class="pre">Syntax:</span> <span class="pre">scontrol</span> <span class="pre">show</span> <span class="pre">job</span> <span class="pre">&lt;job_id&gt;</span>&#160; <span class="pre">#</span> <span class="pre">or</span> <span class="pre">jobid=&lt;job_id&gt;</span></code></p></li>
+<li><p><strong>Check Node and/or Partition Status</strong> <br>
+<code class="docutils literal notranslate"><span class="pre">Syntax:</span> <span class="pre">sinfo</span> <span class="pre">[-p</span> <span class="pre">&lt;partition&gt;</span> <span class="pre">|</span> <span class="pre">-n</span> <span class="pre">&lt;nodelist&gt;]</span></code></p></li>
+<li><p><strong>Cancel Job(s)</strong> <br>
+<code class="docutils literal notranslate"><span class="pre">Syntax:</span> <span class="pre">scancel</span> <span class="pre">&lt;job_id1&gt;</span> <span class="pre">[&lt;job_id2&gt;</span> <span class="pre">...]</span></code></p></li>
+</ol>
+</section>
+</section>
+<section id="references">
+<h2><a class="toc-backref" href="#id35" role="doc-backlink"><span class="section-number">8.11. </span>References</a><a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p></p></th>
+<th class="head text-right"><p></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>An Overview of Cluster Computing</p></td>
+<td class="text-right"><p><code class="docutils literal notranslate"><span class="pre">https://www.geeksforgeeks.org/an-overview-of-cluster-computing/</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Supercomputer <br> CDC 6600 <br> Cray-1</p></td>
+<td class="text-right"><p><code class="docutils literal notranslate"><span class="pre">https://www.britannica.com/technology/supercomputer#ref1070668</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Conversion Calculator</p></td>
+<td class="text-right"><p><code class="docutils literal notranslate"><span class="pre">https://www.convert-measurement-units.com/conversion-calculator.php</span></code></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>History of Supercomputers</p></td>
+<td class="text-right"><p><code class="docutils literal notranslate"><span class="pre">https://www.extremetech.com/extreme/125271-the-history-of-supercomputers</span></code></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Supercomputer</p></td>
+<td class="text-right"><p><code class="docutils literal notranslate"><span class="pre">https://en.wikipedia.org/wiki/Supercomputer#</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./book/chapter_7"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../chapter_6/chapter_6-nb.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">7. </span>Software Programming for Quantum Computation</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">8.1. Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-first-supercomputer">8.2. The First Supercomputer</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dost-asti-coare">8.3. DOST-ASTI COARE</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coare-services">8.4. COARE Services:</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#who-can-avail-for-the-services">8.4.1. Who can avail for the services?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hpc-service-and-users">8.4.2. HPC Service and Users</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#real-life-applications">8.4.3. Real Life Applications</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-commands-for-linux">8.5. Basic commands for Linux</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connect-to-a-high-performance-computing-hpc">8.6. Connect to a High-Performance Computing (HPC)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#connect-to-an-hpc-from-windows-10-linux-or-macos-using-terminal-and-other-cli-software">8.6.1. Connect to an HPC from Windows 10, Linux or MacOS using terminal and other CLI software:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#connect-to-an-hpc-from-windows-using-putty">8.6.2. Connect to an HPC from Windows using PuTTY:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-ssh-key-pairs">8.6.3. Generate SSH Key Pairs</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-using-linux-macos-wsl">8.6.3.1. Generate using Linux / MacOS / WSL</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#generate-using-putty-key-generator-windows">8.6.3.2. Generate using PuTTY key Generator (Windows)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accessing-dost-asti-coare-hpc">8.7. Accessing DOST-ASTI COARE HPC</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#logging-in-using-linux-macos-wsl">8.7.1. Logging In using Linux / MacOS / WSL</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#logging-in-using-putty-windows">8.7.2. Logging  In using PuTTY (Windows)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#upload-and-downloading-files">8.8. Upload and Downloading files</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scp-linux-macos-wsl">8.8.1. scp ( Linux / MacOS / WSL)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#winscp-windows">8.8.2. WinSCP ( Windows )</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modules-and-environments">8.9. Modules and Environments</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#module-commands">8.9.1. Module Commands</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anaconda-environment">8.9.2. Anaconda ( Environment )</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#slurm">8.10. SLURM</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#partitions-and-quality-of-service-qos">8.10.1. Partitions and Quality-of-Service (QOS)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#job-parameters">8.10.2. Job Parameters</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#job-script">8.10.3. Job Script</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#job-management">8.10.4. Job Management</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">8.11. References</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By QCS Project Team. Inspired by the Womanium Global Quantum Project.
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
