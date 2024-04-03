@@ -2,7 +2,6 @@
 
 # Quantum States for Quantum Computing  
 Prepared by: <i> Ren Tristan A. de la Cruz</i> <br>
-Updated on:  <i> 2023 November 09</i>
 
 <!------------------------------------------------------------------------------------------------->
 <br>
@@ -10,9 +9,6 @@ Updated on:  <i> 2023 November 09</i>
 ```{contents}
 
 ```
-
-Presentation: <a href="https://github.com/quantuminnovationlaboratoryph/qilph-introduction-to-quantum-computing/blob/main/content/chapter-03/extra/chapter-03.pdf"> Slides </a>
-
 <!------------------------------------------------------------------------------------------------->
 <br>
 
