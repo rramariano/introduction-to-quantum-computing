@@ -1,20 +1,14 @@
 <!------------------------------------------------------------------------------------------------->
 
 # Quantum States for Quantum Computing  
-Prepared by: <i> Ren Tristan A. de la Cruz</i> <br>
+Prepared by: <i> Ren Tristan A. de la Cruz</i> 
 
-<!------------------------------------------------------------------------------------------------->
-<br>
 
 ```{contents}
 
 ```
-<!------------------------------------------------------------------------------------------------->
-<br>
 
 ## Introduction   
-<hr>
-
  
 Computation is information processing. In classical computing, information is encoded into strings 
 of bits called <i>bit strings</i>. Bit strings are the objects of computation in classical computing.
@@ -22,15 +16,8 @@ Bit strings are the ones being processed (checked and transformed) during comput
 computing, the objects of computation are <i>quantum states</i>. In a similar manner to how a bit 
 string is made up of multiple bits, a quantum state is made up of multiple <i>quantum bits (qubits).
 </i> This web note is about quantum states used for quantum computing. 
- 
-
-<!------------------------------------------------------------------------------------------------->
-<br>
 
 ## Classical Bit 
-  
-<hr>
-
  
 The <i> classical bit</i> is the smallest unit of information. It is the amount of information you 
 gain when you received an answer to a <i> yes-or-no </i> question where it is equally likely for
@@ -38,15 +25,11 @@ the answer to be a 'yes' or a 'no'. It is also amount of information you gain wh
 fair coin toss is revealed to you. The classical bit specifies which one of the two possible options 
 occurred or was selected. 
  
-
- 
 The term <i> bit </i> is the contraction of "binary digit". Digits  $  \texttt{0}  $  and 
  $  \texttt{1}  $  are often used as the values of the classical bit. Digit  $  \texttt{0}  $  
 represents one of the two possible options while the digit  $  \texttt{1}  $  represents the other 
 option. Alternative pairs of values like <i>false/true</i>, <i>off/on</i>, <i>low/high</i> and
 <i>-/+</i> are also used as values for the classical bit.
- 
-
  
 One <i>bit</i> of information can be stored in any system that has two distinguishable states. We 
 call such systems as <i>two-state classical</i> systems. e.g. A physical on/off switch is a 
@@ -54,11 +37,8 @@ two-state system where the two states are <i>on</i> and <i>off</i>. A punched ca
 a position/location on a punched card, is a two-state system where the two states are 
 <i>punched</i> (has hole) and <i>non-punched</i> (no hole). The punched card as a whole contains 
 many of these two-state 'systems' and thus stores multiple bits of information.
- 
 
-<!------------------------------------------------------------------------------------------------->
 ###  Bit Strings   
-
  
 To represent multiple bits of information, bits can be stringed together to form a <i>bit string</i>
 (also called <i>binary strings</i>). Bit strings are needed to represent states of a system with
@@ -68,11 +48,9 @@ represent state  $ A $ ,   $ 01 $  can represent state  $ B $ ,  $ 10 $  can rep
  $ 11 $  can represent state  $ D $ . In general, if a system has  $ X $  possible states, then you need
 around  $ log_2(X) $  bits to represent the states of the system. More precisely:
  
-
 $$
 \text{number of bits } = \lceil log_2(\text{number of possible options or states}) \rceil
 $$
-
  
 For example, after rolling a six-sided, it will be in one of the following six states: 
  $ 1,2,3,4,5,6 $ . Since  $  log_2(6) \approx 2.58496  $ , you need  $ 3 = \lceil log_2(6) \rceil  $  bits
@@ -82,7 +60,6 @@ represents state  $ 5 $ ,  $ 101 $  represents state  $ 6 $ , while strings  $ 1
 represent any possible die states.  $ 3 $ -bit strings can represent 8 states while  $ 2 $ -bit strings
 can only represent 4 states and so we need 3 bits to represent that states of the die.  
  
-
  
 <b>Some Formalism:</b> The set  $ \Sigma = \{0, 1\} $  is the <i>alphabet</i> of the bit strings. The
 concatenation operation  $ | $  can take two bits  $ b_1, b_2 \in \Sigma $  and form the 2-bit string
@@ -98,13 +75,7 @@ any length excluding the empty string. The set  $ \Sigma^n $  is the set of all 
  $ n $ . i.e.  $ \Sigma^2 = \{00,01,10,11\}  $ .
  
 
-<!------------------------------------------------------------------------------------------------->
-<br>
-
 ## Quantum Bit (Qubit)
-  
-<hr>
-
  
 If the classical bit is the information stored in a two-state classical system, then the 
 <i> quantum bit (or qubit) </i> is the information stored in a <i>two-state quantum</i> system. In
@@ -118,11 +89,7 @@ by the physicist <a href="https://en.wikipedia.org/wiki/Paul_Dirac"><i>Paul Dira
 these <i>ket</i> notations, you know you will be dealing with quantum states and not classical 
 states.
  
-
-<!------------------------------------------------------------------------------------------------->
-
 ###  Quantum Indeterminacy   
-
  
 Similar to a two-state classical system, when a two-state quantum system is observed/measured it will
 either be in state  $ \ket{A} $  or in state  $ \ket{B} $ , given the system basis is  $ \{\ket{A}, 
@@ -130,8 +97,6 @@ either be in state  $ \ket{A} $  or in state  $ \ket{B} $ , given the system bas
 prior to any measurement/observation the state of a two-level quantum system can actually be 
 "indefinite". This notion is known as <a href="https://en.wikipedia.org/wiki/Quantum_indeterminacy">
 <b><i>quantum indeterminacy</i></b></a>. 
- 
-
  
 Quantum indeterminacy is inferred by many experiments that have been conducted during the early 
 development of quantum mechanics. We sketch an abstract version of such experiments:
@@ -164,16 +129,7 @@ other are observed to be in state  $ \ket{B} $ . The implication of this experim
 observation (after the preparation procedure) the quantum systems' states are <i>indeterminate</i> 
 (meaning "having no definite value"). It is only after measurement is performed will you get a 
 definite observed state.
-<br>
 
-<!---
-<div align="center">
-  <img   src="./figures/quantum-indeterminacy.svg" 
-         alt="Quantum Indeterminacy"
-       align="center"
-       width="700"/>
-</div>
---->
 
 
 ```{figure} ./figures/quantum-indeterminacy.svg
@@ -185,7 +141,6 @@ Quantum Indeterminacy
 ```
  
 
-<!------------------------------------------------------------------------------------------------->
 ###  Superposition   
 
  
@@ -283,7 +238,6 @@ is observed.
  
 
 
-<!------------------------------------------------------------------------------------------------->
 ###  Qubit Examples   
 
 <style>
@@ -295,58 +249,6 @@ table, th, td {
 }
 </style>
 
-<!---
-<center>
-<table style="width:70%">
-  <tr>
-    <th rowspan="2"> Qubit State </th>
-    <th colspan="2">Amplitude of Basis:</th>
-    <th colspan="2">Probability of Observing the Basis:</th>
-  </tr>
-  <tr>
-    <td>  $  \ket{0} $  </td>
-    <td>  $  \ket{1} $  </td>
-    <td>  $  \ket{0} $  </td>
-    <td>  $  \ket{1} $  </td>
-  </tr>
-  <tr>
-    <td>  $  \ket{\psi_1}  = 1 \ket{0} + 0 \ket{1} = \ket{0}  $  </td>
-    <td> 1 </td>
-    <td> 0 </td>
-    <td>  $  \left| 1 \right|^2 = 1 $  </td>
-    <td>  $  \left| 0 \right|^2 = 0 $  </td>
-  </tr>
-  <tr>
-    <td>  $  \ket{\psi_2}  = 0 \ket{0} + 1 \ket{1} = \ket{1}  $  </td>
-    <td> 0 </td>
-    <td> 1 </td>
-    <td>  $  \left| 0 \right|^2 = 0 $  </td>
-    <td>  $  \left| 1 \right|^2 = 1 $  </td>
-  </tr>
-  <tr>
-    <td>  $  \ket{\psi_3}  = \frac{1}{\sqrt{2}} \ket{0} + \frac{1}{\sqrt{2}}  \ket{1}  $  </td>
-    <td>  $  \frac{1}{\sqrt{2}}  $  </td>
-    <td>  $  \frac{1}{\sqrt{2}}  $  </td>
-    <td>  $  \left|\frac{1}{\sqrt{2}}\right|^2 =  \frac{1}{2}  $  </td>
-    <td>  $  \left|\frac{1}{\sqrt{2}}\right|^2 =  \frac{1}{2}  $  </td>
-  </tr>
-  <tr>
-    <td>  $  \ket{\psi_4}  = \frac{1}{\sqrt{4}} \ket{0} + \frac{\sqrt{3}}{\sqrt{4}}  \ket{1}  $  </td>
-    <td>  $  \frac{1}{\sqrt{4}}  $  </td>
-    <td>  $  \frac{\sqrt{3}}{\sqrt{4}}  $  </td>
-    <td>  $  \left|\frac{1}{\sqrt{4}}\right|^2 =  \frac{1}{4}  $  </td>
-    <td>  $  \left|\frac{\sqrt{3}}{\sqrt{4}}\right|^2 =  \frac{3}{4}  $  </td>
-  </tr>
-  <tr>
-    <td>  $  \ket{\psi_5}  = \frac{\sqrt{5}}{\sqrt{8}} \ket{0} + \frac{\sqrt{3}}{\sqrt{8}}  \ket{1}  $  </td>
-    <td>  $  \frac{\sqrt{5}}{\sqrt{8}}  $  </td>
-    <td>  $  \frac{\sqrt{3}}{\sqrt{8}}  $  </td>
-    <td>  $  \left|\frac{\sqrt{5}}{\sqrt{8}}\right|^2 =  \frac{5}{8}  $  </td>
-    <td>  $  \left|\frac{\sqrt{3}}{\sqrt{8}}\right|^2 =  \frac{3}{8}  $  </td>
-  </tr>
-</table>
-</center>
---->
 
 |Qubit| Ampl. of $\ket{0}$ | Ampl. of $\ket{1}$| Prob. of $\ket{0}$ | Prob. of $\ket{1}$ |
 |---|---|---|---|---|
@@ -395,14 +297,6 @@ be negative as long as they follow the Born rule. This is why points representin
 a circle and not just part of the circle on the  $ (+\alpha, +\beta) $  quadrant.
  
 
-<!---
-<div align="center">
-  <img   src="./figures/qs-circle.svg" 
-         alt="Using a Single Angle to Define Amplitudes"
-       align="center"
-       width="550"/>
-</div>
---->
 
 
 ```{figure} ./figures/qs-circle.svg
@@ -433,73 +327,6 @@ where  $ \alpha = cos(\theta) $  and  $ \beta = sin(\theta) $ .
 The table below shows some examples of qubits/states specified by some angle  $ \theta $ .
  
 
-<!---
-<center>
-<table style="width:75%">
-  <tr>
-    <th> $ \theta $ </th>
-    <th> $  \alpha = cos(\theta)  $ </th>
-    <th> $   \beta = sin(\theta)  $ </th>
-    <th> $  \ket{\psi_\theta} = \alpha\ket{0} +\beta\ket{1}  $ </th>
-  </tr>
-  <tr>
-    <td>  $  0  $  </td>
-    <td>  $  1 $  </td>
-    <td>  $  0 $  </td>
-    <td>  $  \ket{\psi_0} = 1\ket{0} + 0\ket{1} = \ket{0} $  </td>
-  </tr>
-  <tr>
-    <td>  $  \frac{\pi}{4}  $  </td>
-    <td>  $  \frac{1}{\sqrt{2}} $  </td>
-    <td>  $  \frac{1}{\sqrt{2}} $  </td>
-    <td>  $  \ket{\psi_{\frac{\pi}{4}}} = \frac{1}{\sqrt{2}} \ket{0} + 
-                                         \frac{1}{\sqrt{2}} \ket{1} $  </td>
-  </tr>
-  <tr>
-    <td>  $  \frac{\pi}{2}  $  </td>
-    <td>  $  0  $  </td>
-    <td>  $  1  $  </td>
-    <td>  $  \ket{\psi_{\frac{\pi}{2}}} = 0 \ket{0} + 
-                                         1 \ket{1} = \ket{1} $  </td>
-  </tr>
-  <tr>
-    <td>  $  \frac{3\pi}{4}  $  </td>
-    <td>  $  -\frac{1}{\sqrt{2}}  $  </td>
-    <td>  $  \frac{1}{\sqrt{2}}  $  </td>
-    <td>  $  \ket{\psi_{\frac{3\pi}{4}}} = -\frac{1}{\sqrt{2}}  \ket{0} + 
-                                          \frac{1}{\sqrt{2}} \ket{1}  $ </td>
-  </tr>
-  <tr>
-    <td>  $  \pi  $  </td>
-    <td>  $  -1  $  </td>
-    <td>  $   0  $  </td>
-    <td>  $  \ket{\psi_{\pi}} = -1 \ket{0} + 
-                                0 \ket{1}  = -\ket{0} $ </td>
-  </tr>
-  <tr>
-    <td>  $  \frac{5\pi}{4}  $  </td>
-    <td>  $  -\frac{1}{\sqrt{2}}  $  </td>
-    <td>  $  -\frac{1}{\sqrt{2}}  $  </td>
-    <td>  $  \ket{\psi_{\frac{5\pi}{4}}} = -\frac{1}{\sqrt{2}}  \ket{0} -
-                                          \frac{1}{\sqrt{2}} \ket{1}  $ </td>
-  </tr>
-  <tr>
-    <td>  $  \frac{3\pi}{2}  $  </td>
-    <td>  $  0  $  </td>
-    <td>  $  -1  $  </td>
-    <td>  $  \ket{\psi_{\frac{3\pi}{2}}} = 0 \ket{0} -
-                                          1 \ket{1} = -\ket{1}  $ </td>
-  </tr>
-  <tr>
-    <td>  $  \frac{7\pi}{4}  $  </td>
-    <td>  $   \frac{1}{\sqrt{2}}  $  </td>
-    <td>  $  -\frac{1}{\sqrt{2}}  $  </td>
-    <td>  $  \ket{\psi_{\frac{7\pi}{4}}} = \frac{1}{\sqrt{2}}  \ket{0} -
-                                          \frac{1}{\sqrt{2}} \ket{1}  $ </td>
-  </tr>
-</table>
-</center>
---->
 
 | $ \theta $| $\alpha = cos(\theta) $ | $ \beta = sin(\theta)$ | $  \ket{\psi_\theta} = \alpha\ket{0} +\beta\ket{1}  $ |
 |---|---|---|---|
@@ -512,18 +339,10 @@ The table below shows some examples of qubits/states specified by some angle  $ 
 | $  \frac{3\pi}{2}  $ | $  0  $  |  $  -1  $  | $  \ket{\psi_{\frac{3\pi}{2}}} = 0 \ket{0} - 1 \ket{1} = -\ket{1}  $ |
 | $  \frac{7\pi}{4}  $ | $   \frac{1}{\sqrt{2}}  $ |  $  -\frac{1}{\sqrt{2}}  $ |  $  \ket{\psi_{\frac{7\pi}{4}}} = \frac{1}{\sqrt{2}}  \ket{0} - \frac{1}{\sqrt{2}} \ket{1}  $ |
 
-<br>
-The figure below shows the qubits as points (or as arrows).
-<br>
 
-<!---
-<div align="center">
-  <img   src="./figures/qs-trig-circle.svg" 
-         alt="Trigonometric Circle"
-       align="center"
-       width="700"/>
-</div>
---->
+The figure below shows the qubits as points (or as arrows).
+
+
 
 ```{figure} ./figures/qs-trig-circle.svg
 ---
@@ -610,14 +429,6 @@ follow the Born rule. i.e.  $  {(a')}^2 + {(b')}^2 = 1 $ .
  $ \alpha' $  associated with state  $ \ket{0} $ . Function  $ g $  takes the same amplitudes 
  $ \alpha,\beta $  as input and return a new amplitude  $ \beta' $  associated with state  $ \ket{1} $ .
 
-<!---
-<div align="center">
-  <img   src="./figures/quantum-ops-generic.svg" 
-         alt="Generic 1-Qubit Operator"
-       align="center"
-       width="500"/>
-</div>
---->
 
 ```{figure} ./figures/quantum-ops-generic.svg
 ---
@@ -664,14 +475,6 @@ the original qubit is either  $ \ket{\psi}=\ket{0} $  where  $  \alpha=1,\beta=0
 = \ket{1}  $  where  $ \alpha=0, \beta=1 $ , then quantum NOT operator behaves exactly like a classical
 NOT (bit flip) operator. 
 
-<!---
-<div align="center">
-  <img   src="./figures/quantum-ops-not.svg" 
-         alt="Quantum NOT Operator as Reflection"
-       align="center"
-       width="600"/>
-</div>
---->
  
 ```{figure} ./figures/quantum-ops-not.svg
 ---
@@ -724,14 +527,6 @@ The  $ H $  operator transforms the basis state  $ \ket{0} $  to the state
 state   $ \ket{1} $  to the state  $ \ket{-} = \left(\frac{1}{\sqrt{2}}\ket{0} - 
 \frac{1}{\sqrt{2}}\ket{1}\right)  $ .
 
-<!---
-<div align="center">
-  <img   src="./figures/quantum-ops-hadamard.svg" 
-         alt="Hadamard Operator as Reflections"
-       align="center"
-       width="600"/>
-</div>
---->
  
 ```{figure} ./figures/quantum-ops-hadamard.svg
 ---
@@ -740,14 +535,6 @@ width: 600px
 Hadamard Operator as Reflection
 ```
 
-<!--- 
-<div align="center">
-  <img   src="./figures/quantum-ops-rotate.svg" 
-         alt="Rotation Operator"
-       align="center"
-       width="600"/>
-</div>
---->
 
 
  ```{figure} ./figures/quantum-ops-rotate.svg
@@ -768,14 +555,6 @@ $$
 <!------------------------------------------------------------------------------------------------->
 ###  Qubits as Points in 3D Space (or as Points on a Sphere)   
 
-<!---
-<div align="center">
-  <img   src="./figures/qs-blochsphere.svg" 
-         alt="Bloch Sphere"
-       align="center"
-       width="550"/>
-</div>
---->
 
  ```{figure} ./figures/qs-blochsphere.svg
 ---
@@ -844,14 +623,6 @@ $$
 
 Horizontal tree
 
-<!---
-<div align="center">
-  <img   src="./figures/qs-1qubit-htree.svg" 
-         alt="Qubit as Horizontal Binary Tree"
-       align="center"
-       width="250 "/>
-</div>
---->
 
  ```{figure} ./figures/qs-1qubit-htree.svg
 ---
@@ -863,14 +634,6 @@ Qubit as a Horizontal Binary Tree
 
 Vertical Tree
 
-<!---
-<div align="center">
-  <img   src="./figures/qs-1qubit-vtree.svg" 
-         alt="Qubit as a Vertical Binary Tree"
-       align="center"
-       width="300 "/>
-</div>
---->
 
  ```{figure} ./figures/qs-1qubit-vtree.svg
 ---
@@ -881,22 +644,14 @@ Qubit as a Vertical Binary Tree
 
 
 <!------------------------------------------------------------------------------------------------->
-<br>
+
 
 ## Quantum States
   
-<hr>
+ 
 
 Horizontal Tree
 
-<!---
-<div align="center">
-  <img   src="./figures/qs-2qubit-htree.svg" 
-         alt="2-qubit State as a Horizontal Binary Tree"
-       align="center"
-       width="400 "/>
-</div>
---->
 
 
 ``` {figure} ./figures/qs-2qubit-htree.svg
@@ -908,14 +663,6 @@ width: 400px
 
 Vertical Binary Tree
 
-<!---
-<div align="center">
-  <img   src="./figures/qs-2qubit-vtree.svg" 
-         alt="2-qubit State as a Vertical Binary Tree"
-       align="center"
-       width="450 "/>
-</div>
---->
 
 ``` {figure} ./figures/qs-2qubit-vtree.svg
 ---
@@ -925,7 +672,7 @@ width: 450px
 ```
 
 
-<br>
+
 
 Let the first qubit be  $ \ket{q_1} $ :
 
@@ -1004,25 +751,17 @@ $$
 $$
 
 <!------------------------------------------------------------------------------------------------->
-<br>
+
 
 ## Entanglement of Qubits
   
-<hr>
+ 
 
 
 Non-entangled 3-qubit state:
 
-<!---
-<div align="center">
-  <img   src="./figures/qs-3qubit-non-entangled.svg" 
-         alt="Non-entangled 3-qubit State"
-       align="center"
-       width="700"/>
-</div>
---->
 
-<br>
+
 
 ```{figure} ./figures/qs-3qubit-non-entangled.svg
 ---
@@ -1034,16 +773,8 @@ Non-entangled 3-qubit State
 
 Entanglement  $ q_1 = q_3 $ :
 
-<!---
-<div align="center">
-  <img   src="./figures/qs-3qubit-q1-eq-q3.svg" 
-         alt="3-qubit State with Entanglement q1=q3"
-       align="center"
-       width="700"/>
-</div>
---->
 
-<br>
+
 
 ```{figure} ./figures/qs-3qubit-q1-eq-q3.svg
 ---
@@ -1054,16 +785,8 @@ width: 700px
 
 Entanglement  $ q_1 \neq q_2 $ :
 
-<!---
-<div align="center">
-  <img   src="./figures/qs-3qubit-q1-neq-q2.svg" 
-         alt="3-qubit State with Entanglement q1 =\= q2"
-       align="center"
-       width="700"/>
-</div>
---->
 
-<br>
+
 
 ```{figure} ./figures/qs-3qubit-q1-neq-q2.svg
 ---
@@ -1075,16 +798,8 @@ width: 700px
 
 Entanglement  $ q_1 = q_2 = q_3 $ :
 
-<!---
-<div align="center">
-  <img   src="./figures/qs-3qubit-eq-q123.svg" 
-         alt="3-qubit State with Entanglement q1 = q2 = q3"
-       align="center"
-       width="700"/>
-</div>
---->
 
-<br>
+
 
 
 ```{figure} ./figures/qs-3qubit-eq-q123.svg
@@ -1099,7 +814,7 @@ width: 700px
 <!------------------------------------------------------------------------------------------------->
 ##  Complex Numbers (Appendix)
  
-<hr>
+ 
 
  
 The set  $ \mathbb{C} $  of <i>complex numbers</i> is an extension of the set  $ \mathbb{R} $  of 
@@ -1121,14 +836,6 @@ of the complex number while the vertical component represents the imaginary comp
 complex number. The complex number  $ z = a+bi  $  is represented as the point  $ (a,b) $  on  the 
 plane.
 
-<!---
-<div align="center">
-  <img   src="./figures/comp-argand.svg" 
-         alt="Argand Plane"
-       align="center"
-       width="450"/>
-</div>
---->
  
 ```{figure} ./figures/comp-argand.svg
 ---
@@ -1190,14 +897,6 @@ polar coordinate, its coordinate in the Argand plane is  $  (a,b) = (r\cdot cos(
 r\cdot sin(\theta))  $ .
  
 
-<!---
-<div align="center">
-  <img   src="./figures/comp-polar.svg" 
-         alt="Polar Coordinates"
-       align="center"
-       width="550"/>
-</div>
---->
 
 ```{figure} ./figures/comp-polar.svg
 ---
