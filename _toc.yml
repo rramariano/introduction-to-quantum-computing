@@ -21,8 +21,8 @@ parts:
       - file: book/chapter_3/chapter_3-nb
       - file: book/chapter_4/chapter_4-nb
       - file: book/chapter_5/chapter_5-nb
-      - file: book/chapter_6/chapter_6-nb
-      - file: book/chapter_7/chapter_7-nb
+      # - file: book/chapter_6/chapter_6-nb
+      # - file: book/chapter_7/chapter_7-nb
   # - caption: Appendices
     # chapters:
       # - file: book/bibliography
